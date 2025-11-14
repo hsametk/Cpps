@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 22:41:45 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/09 15:14:42 by hakotu           ###   ########.fr       */
+/*   Created: 2025/11/14 15:26:26 by hakotu            #+#    #+#             */
+/*   Updated: 2025/11/14 16:22:06 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,36 @@ public:
 
     float	toFloat( void ) const;
     int		toInt( void ) const;
+
+        // ---------- ex02: Comparisons ----------
+    bool operator>(const Fixed& rhs) const;
+    bool operator<(const Fixed& rhs) const;
+    bool operator>=(const Fixed& rhs) const;
+    bool operator<=(const Fixed& rhs) const;
+    bool operator==(const Fixed& rhs) const;
+    bool operator!=(const Fixed& rhs) const;
+
+    // ---------- ex02: Arithmetic ----------
+    Fixed operator+(const Fixed& rhs) const;
+    Fixed operator-(const Fixed& rhs) const;
+    Fixed operator*(const Fixed& rhs) const;
+    Fixed operator/(const Fixed& rhs) const;
+
+    // ---------- ex02: Increment / Decrement ----------
+    // pre-increment / pre-decrement
+    Fixed& operator++(); // ++a
+    Fixed& operator--(); // --a
+    // post-increment / post-decrement
+    Fixed  operator++(int); // a++
+    Fixed  operator--(int); // a--
+
+    // ---------- ex02: min / max ----------
+    static Fixed&       min(Fixed& a, Fixed& b);
+    static const Fixed& min(const Fixed& a, const Fixed& b);
+    static Fixed&       max(Fixed& a, Fixed& b);
+    static const Fixed& max(const Fixed& a, const Fixed& b);
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
-#endif
-
-const Fixed &max(const Fixed &a, const Fixed &b);
+#endif 

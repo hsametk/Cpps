@@ -35,7 +35,7 @@ public:
     float	toFloat( void ) const;
     int		toInt( void ) const;
 
-        // ---------- ex02: Comparisons ----------
+    // ---------- ex02: Comparisons ----------
     bool operator>(const Fixed& rhs) const;
     bool operator<(const Fixed& rhs) const;
     bool operator>=(const Fixed& rhs) const;

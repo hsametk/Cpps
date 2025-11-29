@@ -37,7 +37,6 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+const Fixed &max(const Fixed &a, const Fixed &b);
 
 #endif
-
-const Fixed &max(const Fixed &a, const Fixed &b);

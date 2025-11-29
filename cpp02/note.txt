@@ -1,0 +1,116 @@
+Orthodox Canonical Form Nedir?
+
+Bir sınıfın “canonical” yani doğru, standart, eksiksiz kabul edilebilmesi için 4 fonksiyonun tanımlanması gerekir
+
+Çünkü bir sınıfın:
+
+Oluşturulması
+Bu zaten diğer cpp lerde de yaptığımız şey.
+
+Kopyalanması
+Bir nesne yeni oluşturulurken, başka bir nesneden kopyalanıyorsa çalışır.
+
+Birbirine atanması
+Zaten var olan bir nesne başka bir nesneye eşitlendiğinde çağrılır.
+
+Yok edilmesi
+Buda default olarak yaptığımız şeylerde.
+gibi hayattaki tüm olaylar düzenli ve güvenli bir şekilde gerçekleşmelidir.
+
+
+Orthodox Canonical Form, bir C++ sınıfının güvenli ve doğru şekilde kopyalanabilmesi, taşınabilmesi ve 
+yok edilebilmesi için gerekli olan 4 fonksiyonun (default ctor, copy ctor, copy assignment operator, destructor)
+birlikte tanımlanmasıdır.
+Bunlar sınıfın tam yaşam döngüsünü kontrol eder ve C++’ta bellek güvenliği için temel bir best practice’tir.
+
+//Ex00 için fonksiyonları nasıl atadığına bak ve main e çalış.
+
+
+//Ex01
+
+Normalde float sayılar binary olarak saklanır ve bazı sayılar tam temsil edilemez.
+
+Örnek:
+0.1 + 0.2 = 0.3000000004 (precision kaybı)
+
+Bazı sistemlerde (gömülü cihaz, DSP, bazı grafik motorları) float desteklenmez veya çok yavaştır.
+Bu yüzden float yerine integer kullanarak virgüllü sayı simüle ederiz.
+
+Bu sisteme fixed point denir.
+
+//Fixed point mantığı
+gerçek sayı * 2^fractionBits = integer
+
+_raw bizim sayımız, static const int _fracBits = 8;
+
+2^8 = 256
+
+Örnek
+3.5 * 256 = 896   _raw = 896
+
+//int --> fixed dönüşümü
+Bir tam sayı zaten virgülsüzdür.
+
+raw= int_value *256
+_raw = n << _fracBits
+
+//bir sayıyı 8 bit sola kaydırmak 256 ile çarmak ile aynıdır.
+
+//float --> fixed dönüşümü
+raw = roundf(float_value * 256)
+5.75 * 256 = 1472
+
+c++ da _raw = roundf(f * (1 << _fracBits));
+Neden roudf?
+çünkü raw intager olmak zorunda yuvarlama yapılmazsa veri kayması oluşturulurken
+
+
+//Fixed --> float dönüşümü
+Fixed formdaki sayıyı tekrar normal hayattaki float'a çevirmek için:
+float_value = raw / 256.0f
+
+
+
+//fixed --> int döngüsümü
+int_value = raw / 256
+return _raw >> _fracBits
+
+
+
+// 6. operator<< overload
+
+Sabitleştirilmiş sayı aslında içeride integer.
+
+
+//özet
+EX01, fixed-point mantığının matematiksel kısmını gerçekleştiriyor.
+
+Int’leri fixed forma çevirmek için raw = n << _fracBits kullanıyoruz.
+
+Float’ları çevirirken roundf(f * (2^fracBits)) yapıyoruz.
+
+toFloat() fonksiyonu fixed değeri gerçek bir float’a döndürüyor: raw / 256.
+
+toInt() ise 256’ya bölüp tam sayıyı alıyor: raw >> 8.
+
+operator<< overload ederek fixed point değerini float gibi yazdırıyoruz.
+
+Böylece kendi yaptığımız tarzda bir “float” veri tipi yaratmış oluyoruz ama içeride tamamen integer aritmetiği kullanıyoruz.
+
+
+
+//ex02
+
+EX02 İçinde Öğretilen Ana Kavramlar
+
+Operator overloading
+
+Fixed-point aritmetiği
+
+Prefix & postfix farkı
+
+static fonksiyon mantığı
+
+const correctness
+
+Return by reference vs. return by value

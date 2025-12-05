@@ -1,6 +1,7 @@
 Orthodox Canonical Form Nedir?
 
-Bir sınıfın “canonical” yani doğru, standart, eksiksiz kabul edilebilmesi için 4 fonksiyonun tanımlanması gerekir
+Bir sınıfın “canonical” yani doğru, standart, eksiksiz kabul edilebilmesi için 4 fonksiyonun 
+tanımlanması gerekir.
 
 Çünkü bir sınıfın:
 
@@ -28,6 +29,7 @@ Bunlar sınıfın tam yaşam döngüsünü kontrol eder ve C++’ta bellek güve
 
 //Ex01
 
+fracBits virgülü kaç bit sağa kaydırıp virgüllü haale getireceğimizi belirleyen sayı.
 Normalde float sayılar binary olarak saklanır ve bazı sayılar tam temsil edilemez.
 
 Örnek:
@@ -114,3 +116,72 @@ static fonksiyon mantığı
 const correctness
 
 Return by reference vs. return by value
+
+❗ Ama kendi sınıfını (Fixed) toplamak isteyince NE OLUR?
+Fixed a(1.5f);
+Fixed b(2.25f);
+
+Fixed c = a + b;   // HATA!
+
+
+Dil şunu sorar:
+
+“Ben Fixed tipi için + nasıl çalışır bilmiyorum.”
+
+C++ built-in tipler için +’yı biliyor,
+ama senin sınıfın için bilmiyor.
+
+İşte tam burada devreye giriyor:
+
+✅ 2) Operatör overloading neden var?
+
+C++ bize diyor ki:
+
+“Hazır operatörleri kendi sınıfın için yeniden tanımlayabilirsin.”
+
+Bunun adı operator overloading.
+
+Sen kendi sınıfına şunu öğretiyorsun:
+“Fixed+Fixed → nasıl toplanır?”
+
+Örnek:
+
+Fixed Fixed::operator+(const Fixed& rhs) const {
+    Fixed result;
+    result._raw = this->_raw + rhs._raw;
+    return result;
+}
+
+
+Bu sayede şunu kullanabiliyorsun:
+
+Fixed c = a + b;
+
+
+Yani operatör C++’ta zaten var,
+ama senin sınıfın için yok.
+
+Senin görevin:
+dilin operatörlerini kendi sınıfına adapte etmek.
+
+amaç operator overloading i öğretmek.
+
+
+//Kopyalamanın farkları
+Kısa ve net özet 👇
+
+✅ Shallow Copy (Yüzeysel Kopya)
+
+Sadece değerleri kopyalar.
+
+Pointer varsa adresini kopyalar → iki obje aynı belleği paylaşır.
+
+Dinamik bellek varsa tehlikeli olabilir.
+
+✅ Deep Copy (Derin Kopya)
+
+Hem değerleri hem de pointer’ın gösterdiği veriyi kopyalar.
+
+Her objeye ayrı bir bellek alanı verir.
+
+Dinamik bellek kullanan sınıflarda güvenli ve gereklidir.

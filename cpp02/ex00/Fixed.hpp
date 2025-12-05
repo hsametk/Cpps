@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:05:48 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/03 22:16:24 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/11/30 14:23:09 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 public:
     Fixed();
     Fixed(const Fixed& other);
-    Fixed& operator=(const Fixed& rhs);  
+    Fixed& operator=(const Fixed& rhs);
     ~Fixed();
 
     int  getRawBits(void) const;

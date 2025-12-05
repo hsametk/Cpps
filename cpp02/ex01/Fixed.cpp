@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:41:42 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/08 19:32:03 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/05 18:52:50 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Fixed::Fixed(const float number)
     const int scale = 1 << _fracBits;
     float tmp = number * scale;
     float rounded = roundf(tmp);
-    _raw = static_cast<int>(rounded);
+    _raw = (int)rounded;
 }
 Fixed::Fixed(const Fixed& other) {
     std::cout << "Copy constructor called" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:26:28 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/14 16:23:35 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/05 18:53:50 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Fixed::Fixed(const float number)
     const int scale = 1 << _fracBits;
     float tmp = number * scale;
     float rounded = roundf(tmp);
-    _raw = static_cast<int>(rounded);
+    _raw = (int)rounded;
 }
 Fixed::Fixed(const Fixed& other) {
     *this = other;
@@ -49,7 +49,7 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-    return static_cast<float>(_raw) / (1 << _fracBits);
+    return (int)_raw / (1 << _fracBits);
 }
 
 int Fixed::toInt(void) const {

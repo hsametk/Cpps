@@ -185,3 +185,57 @@ Hem değerleri hem de pointer’ın gösterdiği veriyi kopyalar.
 Her objeye ayrı bir bellek alanı verir.
 
 Dinamik bellek kullanan sınıflarda güvenli ve gereklidir.
+
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+{
+    os << fixed.toFloat();
+    return (os);
+}
+
+bu nedir ve neden kullanıyoruz?
+fonksiyon amacı cout << fixedObj; yazabilmeni sağlar.
+Çünkü C++ "Fixed nasıl yazdırılır?" bilmiyor.
+
+Bu fonksiyon şunu sağlar:
+
+std::cout << fixedObj;
+
+
+os → çıktı akımı (cout)
+
+fixed → yazdırılacak nesne
+
+fixed.toFloat() → float’a çevirip yazdırıyor
+
+return os; → zincirleme yazdırmayı mümkün kılıyor.
+
+fonksiyonun sonundaki constlara tekrar bak
+✅ 1) Pre-increment / Post-increment operatörlerinde const KULLANAMAZSIN
+
+Aşağıdakiler:
+
+Fixed& Fixed::operator++()
+Fixed Fixed::operator++(int)
+Fixed& Fixed::operator--()
+Fixed Fixed::operator--(int)
+
+
+const olamaz çünkü:
+
+Bu operatörler objeyi değiştirir (_raw++, _raw--).
+
+const üye fonksiyon demek: objeyi değiştirmeyeceğim demektir.
+
+Bu operatörlerin amacı zaten sayının değerini değiştirmektir.
+
+| Fonksiyon                         | const olabilir mi?                          | Neden?                        |
+| --------------------------------- | ------------------------------------------- | ----------------------------- |
+| `operator++()`                    | ❌                                           | nesneyi değiştiriyor          |
+| `operator++(int)`                 | ❌                                           | nesneyi değiştiriyor          |
+| `operator--()`                    | ❌                                           | nesneyi değiştiriyor          |
+| `operator--(int)`                 | ❌                                           | nesneyi değiştiriyor          |
+| `min(Fixed&, Fixed&)`             | ❌                                           | non-const referans döndürüyor |
+| `min(const Fixed&, const Fixed&)` | ⚠️ Teknik olarak olabilir ama gerekli değil | çünkü this kullanılmıyor      |
+| `max(Fixed&, Fixed&)`             | ❌                                           | non-const referans döndürüyor |
+| `max(const Fixed&, const Fixed&)` | ⚠️ Olabilir ama **subject bunu beklemiyor** | anlamsız const                |

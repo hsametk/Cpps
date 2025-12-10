@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:27:17 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/09 17:06:53 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/11 00:11:32 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ private:
 	unsigned int	_attackDamage;
 public:
 	ClapTrap();
-	ClapTrap(const ClapTrap &copy);
     ClapTrap(const std::string& name);
+	ClapTrap(const ClapTrap &copy);
     ~ClapTrap();
 	
 	ClapTrap &operator=(const ClapTrap &c);

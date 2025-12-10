@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:27:15 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/09 17:53:39 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/11 00:51:15 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ ClapTrap::ClapTrap()
     std::cout << "ClapTrap " << _name << " default-constructed\n";
 }
 
+ClapTrap::ClapTrap(const std::string& name)
+: _name(name), _hit_points(10), _energy_points(10), _attackDamage(0)
+{
+    std::cout << "ClapTrap " << _name << " constructed\n";
+}
+
 ClapTrap::ClapTrap(const ClapTrap &copy)
 : _name(copy._name),
   _hit_points(copy._hit_points),
@@ -25,12 +31,6 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
   _attackDamage(copy._attackDamage)
 {
     std::cout << "ClapTrap " << _name << " copy-constructed\n";
-}
-
-ClapTrap::ClapTrap(const std::string& name)
-: _name(name), _hit_points(10), _energy_points(10), _attackDamage(0)
-{
-    std::cout << "ClapTrap " << _name << " constructed\n";
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &c) {
@@ -46,6 +46,12 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &c) {
 }
 void	ClapTrap::attack(const std::string& target)
 {
+    if (_hit_points == 0 || _energy_points == 0)
+    {
+        std::cout << "ClapTrap " << _name << " can't attack: no hit points or energy left." << std::endl;
+        return ;
+    }
+    _energy_points--;
 	std::cout	<< "ClapTrap " << _name
 				<< " attacks " << target
 				<< ", causing " << _attackDamage
@@ -53,9 +59,13 @@ void	ClapTrap::attack(const std::string& target)
 }
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    // 1) Mevcut HP'yi oku
-    // 2) amount >= _hit_points ise _hit_points = 0; yoksa _hit_points -= amount
-    // 3) Mesaj bas: alınan hasar ve yeni HP
+    if (_hit_points == 0)
+    {
+        std::cout << "ClapTrap " << _name 
+          << " can't repair itself: no energy points or hit points left." << std::endl;
+        return ;
+    }
+    _hit_points = (amount >= _hit_points) ? 0 : _hit_points - amount;
     std::cout << "ClapTrap " << _name
               << " takes " << amount
               << " points of damage. HP: " << _hit_points << "\n";
@@ -63,14 +73,13 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    // 1) Eğer _hit_points == 0 veya _energy_points == 0 ise mesaj bas ve return
 	if (_hit_points == 0 || _energy_points == 0)
-		std::cout << "No more energy points or 0 hit point." << std::endl;
-    // 2) Aksi halde: _hit_points += amount
+    {
+		std::cout << "ClapTrap " << _name << " can't repair itself: no energy points or hit points left." << std::endl;
+        return ;
+    }
 	_hit_points += amount;
-    // 3) _energy_points -= 1
 	_energy_points -= 1;
-    // 4) Mesaj bas: onarım miktarı, yeni HP ve EP
     std::cout << "ClapTrap " << _name
               << " repairs itself by " << amount
               << ". HP: " << _hit_points
@@ -79,5 +88,5 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 ClapTrap::~ClapTrap()
 {
-        std::cout << "Deconstructor called" << std::endl;
+        std::cout << "Destructor called" << std::endl;
 }

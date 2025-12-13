@@ -24,6 +24,9 @@ yok edilebilmesi için gerekli olan 4 fonksiyonun (default ctor, copy ctor, copy
 birlikte tanımlanmasıdır.
 Bunlar sınıfın tam yaşam döngüsünü kontrol eder ve C++’ta bellek güvenliği için temel bir best practice’tir.
 
+//Önemli
+_fracBits bir “sınıf sabiti”dir. Bu yüzden static const yapılır.
+
 //Ex00 için fonksiyonları nasıl atadığına bak ve main e çalış.
 
 
@@ -239,3 +242,30 @@ Bu operatörlerin amacı zaten sayının değerini değiştirmektir.
 | `min(const Fixed&, const Fixed&)` | ⚠️ Teknik olarak olabilir ama gerekli değil | çünkü this kullanılmıyor      |
 | `max(Fixed&, Fixed&)`             | ❌                                           | non-const referans döndürüyor |
 | `max(const Fixed&, const Fixed&)` | ⚠️ Olabilir ama **subject bunu beklemiyor** | anlamsız const                |
+
+int → postfix (++/--) operatörünü ayırmak için C++’ın istediği dummy parametredir.
+
+İçeride kullanılmaz.
+
+Değer taşımaz.
+
+Sadece "bu postfix" demek içindir.
+
+
+//nedne os returnlenir
+
+zincirleme yazılabilmesi için
+
+
+
+
+
+//
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+neden class ın dışında yazılıyor
+
+operator<< sınıfın dışında yazılır çünkü sol operand std::ostream’dir ve onun üye operatörünü değiştiremezsin.
+C++’ta sol operand sınıfın kendisi olmadıkça operatörü sınıf içine yazamazsın.
+
+Bu nedenle global/friend olarak yazılır.
+

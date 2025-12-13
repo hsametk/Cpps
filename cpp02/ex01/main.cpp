@@ -6,11 +6,10 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:41:39 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/08 15:15:26 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/14 00:56:46 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Fixed.hpp"
 
 int main( void ) {

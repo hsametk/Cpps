@@ -6,12 +6,11 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:41:42 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/05 18:52:50 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/14 00:57:00 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include "cmath"
 const int Fixed::_fracBits = 8;
 
 Fixed::Fixed() {

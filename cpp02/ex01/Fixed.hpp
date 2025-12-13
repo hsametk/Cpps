@@ -6,15 +6,16 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:41:45 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/09 15:14:42 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/14 00:56:56 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include "string.h"
 #include "iostream"
 #include <cmath>
-#ifndef FIXED_HPP
-#define FIXED_HPP
 
 class Fixed {
 private:

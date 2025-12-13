@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:05:43 by hakotu            #+#    #+#             */
-/*   Updated: 2025/11/03 22:40:43 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/14 00:57:08 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include "iostream"
 
 const int Fixed::_fracBits = 8;
 

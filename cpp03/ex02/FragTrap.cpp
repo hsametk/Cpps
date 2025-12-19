@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 00:19:10 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/13 00:04:45 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/19 15:11:17 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ FragTrap::FragTrap(const std::string& name)
 {   
     _hit_points = 100;
     _energy_points = 100;
-    _attackDamage = 3,,,,,,,,0;
+    _attackDamage = 30;
     std::cout << "FragTrap constructor called\n";
 }
 

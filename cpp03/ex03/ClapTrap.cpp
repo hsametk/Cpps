@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:27:15 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/11 02:07:43 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/19 15:07:31 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ ClapTrap::ClapTrap()
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-: _name(name), _hit_points(100), _energy_points(50), _attackDamage(20)
+: _name(name), _hit_points(10), _energy_points(10), _attackDamage(0)
 {
     std::cout << "ClapTrap " << _name << " constructed\n";
 }
+
 ClapTrap::ClapTrap(const ClapTrap &copy)
 : _name(copy._name),
   _hit_points(copy._hit_points),

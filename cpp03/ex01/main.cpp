@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:27:20 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/20 12:39:25 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/20 13:11:30 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int main()
     std::cout << "==== DAMAGE & REPAIR TEST ===="  << std::endl;
     s1.takeDamage(30);
     s1.beRepaired(20);
-    s1.takeDamage(200); // HP -> 0
-    s1.attack("Enemy"); // Attack yapamamalı
+    s1.takeDamage(200);
+    s1.attack("Enemy");
     std::cout << std::endl;
 
     std::cout << "==== COPY CONSTRUCTOR TEST ===="  << std::endl;

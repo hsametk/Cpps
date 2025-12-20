@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 23:31:07 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/19 17:05:31 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/20 12:47:16 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ DiamondTrap::DiamondTrap(const std::string& name)
     _hit_points = 100;
     _energy_points = 50;
     _attackDamage = 30;
-    std::cout << "DiamondTrap " << _name << " constructed\n";
+    std::cout << "DiamondTrap " << _name << " constructed" << std::endl;
 }
 
 void DiamondTrap::attack(const std::string& target)

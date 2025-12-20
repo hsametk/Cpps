@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:27:20 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/20 12:27:14 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/20 12:35:48 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 
 int main()
 {
-    std::cout << "====== Constructors test ====== << std::endl";
+    std::cout << "====== Constructors test ======" << std::endl;
     ClapTrap ct_default;              // default constructor
     ClapTrap ct_named("Clappy");      // name constructor
     ClapTrap ct_copy(ct_named);       // copy constructor
     ClapTrap ct_assigned;             // default then assignment
     ct_assigned = ct_named;
 
-    std::cout << std::endl << "====== Basic actions test ====== << std::endl";
+    std::cout << std::endl << "====== Basic actions test ======" << std::endl;
     ClapTrap hero("Hero");
     
     hero.attack("Training Dummy");    // normal attack
     hero.takeDamage(3);               // takes some damage
     hero.beRepaired(2);               // repairs a bit
 
-    std::cout << std::endl << "====== Energy depletion test ====== << std::endl";
+    std::cout << std::endl << "====== Energy depletion test ======" << std::endl;
     // Hero'nın bütün enerji puanlarını bitirelim
     for (int i = 0; i < 12; ++i)
         hero.attack("Dummy");         // EP 0'a düşünce saldırı yapamamalı
 
-    std::cout << std::endl << "====== Taking heavy damage (HP -> 0) ====== << std::endl";
+    std::cout << std::endl << "====== Taking heavy damage (HP -> 0) ======" << std::endl;
     ClapTrap fragile("Fragile");
     fragile.takeDamage(5);
     fragile.takeDamage(10);           // burada HP 0'a inmeli
     fragile.takeDamage(1);            // zaten 0 HP iken nasıl davrandığını gör
 
-    std::cout << std::endl << "====== Repair with/without energy / HP ====== << std::endl";
+    std::cout << std::endl << "====== Repair with/without energy / HP ======" << std::endl;
     ClapTrap robot("Robot");
 
     // Biraz hasar alıp sonra tamir olsun
@@ -59,8 +59,8 @@ int main()
     dead.takeDamage(20);              // HP 0
     dead.beRepaired(10);              // HP 0 + EP (varsa) durumunda ne oluyor bak
 
-    std::cout << std::endl << "====== End of tests ====== << std::endl";
-    std::cout << "====== Case 1: 0 HP iken attack / repair denemesi ====== << std::endl";
+    std::cout << std::endl << "====== End of tests ======" << std::endl;
+    std::cout << "====== Case 1: 0 HP iken attack / repair denemesi ======" << std::endl;
     {
         ClapTrap zeroHP("ZeroHP");
 
@@ -75,7 +75,7 @@ int main()
         zeroHP.beRepaired(5);
     }
 
-    std::cout << std::endl << "====== Case 2: 0 Energy iken attack / repair denemesi ====== << std::endl";
+    std::cout << std::endl << "====== Case 2: 0 Energy iken attack / repair denemesi ======" << std::endl;
     {
         ClapTrap noEnergy("NoEnergy");
 
@@ -90,7 +90,7 @@ int main()
         noEnergy.beRepaired(5);
     }
 
-    std::cout << std::endl << "====== Case 3: Tekte öldüren büyük damage ====== << std::endl";
+    std::cout << std::endl << "====== Case 3: Tekte öldüren büyük damage ======" << std::endl;
     {
         ClapTrap oneShot("OneShot");
 
@@ -99,7 +99,7 @@ int main()
         oneShot.takeDamage(1);     // zaten 0 HP iken damage
     }
 
-    std::cout << std::endl << "====== Case 4: HP 0 değilken küçük damage ve repair zinciri ====== << std::endl";
+    std::cout << std::endl << "====== Case 4: HP 0 değilken küçük damage ve repair zinciri ======" << std::endl;
     {
         ClapTrap chain("Chain");
 
@@ -109,6 +109,6 @@ int main()
         chain.beRepaired(1);   // HP 10, EP 8 (veya senin sistemine göre)
     }
 
-    std::cout << std::endl << "====== End of error tests ====== << std::endl";
+    std::cout << std::endl << "====== End of error tests ======" << std::endl;
     return 0;
 }

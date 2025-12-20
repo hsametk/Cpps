@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:27:20 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/11 02:30:44 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/20 12:39:25 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,46 @@
 
 int main()
 {
-    std::cout << "==== BASIC CONSTRUCTION TEST ====\n";
+    std::cout << "==== BASIC CONSTRUCTION TEST ====" << std::endl;
     ScavTrap s1("Guardian");
-    std::cout << "\n";
+    std::cout << std::endl;
 
-    std::cout << "==== ATTACK TEST ====\n";
+    std::cout << "==== ATTACK TEST ===="  << std::endl;
     s1.attack("Enemy");
     s1.attack("Enemy");
-    std::cout << "\n";
+    std::cout  << std::endl;
 
-    std::cout << "==== GUARD MODE TEST ====\n";
+    std::cout << "==== GUARD MODE TEST ===="  << std::endl;
     s1.guardGate();
-    std::cout << "\n";
+    std::cout  << std::endl;
 
-    std::cout << "==== DAMAGE & REPAIR TEST ====\n";
+    std::cout << "==== DAMAGE & REPAIR TEST ===="  << std::endl;
     s1.takeDamage(30);
     s1.beRepaired(20);
     s1.takeDamage(200); // HP -> 0
     s1.attack("Enemy"); // Attack yapamamalı
-    std::cout << "\n";
+    std::cout << std::endl;
 
-    std::cout << "==== COPY CONSTRUCTOR TEST ====\n";
+    std::cout << "==== COPY CONSTRUCTOR TEST ===="  << std::endl;
     ScavTrap s2(s1);
     s2.attack("Target Copy");
-    std::cout << "\n";
+    std::cout  << std::endl;
 
-    std::cout << "==== ASSIGNMENT OPERATOR TEST ====\n";
+    std::cout << "==== ASSIGNMENT OPERATOR TEST ===="  << std::endl;
     ScavTrap s3;
     s3 = s1;
     s3.attack("Target Assigned");
-    std::cout << "\n";
+    std::cout << std::endl;
 
-    std::cout << "==== MULTIPLE OBJECT TEST ====\n";
+    std::cout << "==== MULTIPLE OBJECT TEST ===="  << std::endl;
     {
         ScavTrap temp("TempGuard");
         temp.guardGate();
         temp.attack("Intruder");
     }
-    std::cout << "(TempGuard destroyed here)\n";
-    std::cout << "\n";
+    std::cout << "(TempGuard destroyed here)";
+    std::cout << std::endl;
 
-    std::cout << "==== END OF TESTS ====\n";
+    std::cout << "==== END OF TESTS ===="  << std::endl;
     return 0;
 }

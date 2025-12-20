@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 23:31:07 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/20 12:47:16 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/20 13:24:25 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,24 @@ DiamondTrap::DiamondTrap(const std::string& name)
     _hit_points = 100;
     _energy_points = 50;
     _attackDamage = 30;
-    std::cout << "DiamondTrap " << _name << " constructed" << std::endl;
+    std::cout << "DiamondTrap " << _name << " constructed\n";
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap &copy)
+    : ClapTrap(copy), ScavTrap(copy), FragTrap(copy), _name(copy._name)
+{
+    std::cout << "DiamondTrap " << _name << " copy-constructed" << std::endl;
+}
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap &c)
+{
+    std::cout << "DiamondTrap copy assignment operator called" << std::endl;
+    if (this != &c)
+    {
+        ClapTrap::operator=(c);
+        this->_name = c._name;
+    }
+    return *this;
 }
 
 void DiamondTrap::attack(const std::string& target)

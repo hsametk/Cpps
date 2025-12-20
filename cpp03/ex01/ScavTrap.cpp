@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakotu <hakotu@student.42istanbul.com>     +#+  +:+       +#+        */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:49:40 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/11 02:30:09 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/20 12:32:42 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap()
     _hit_points = 100;
     _energy_points = 50;
     _attackDamage = 20;
-    std::cout << "ScavTrap default constructor called\n";
+    std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const std::string& name)
@@ -27,18 +27,18 @@ ScavTrap::ScavTrap(const std::string& name)
     _hit_points = 100;
     _energy_points = 50;
     _attackDamage = 20;
-    std::cout << "ScavTrap constructor called\n";
+    std::cout << "ScavTrap constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &copy)
     : ClapTrap(copy)
 {
-    std::cout << "ScavTrap " << _name << " copy-constructed\n";
+    std::cout << "ScavTrap " << _name << " copy-constructed" << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &c)
 {
-    std::cout << "ScavTrap copy assignment operator called\n";
+    std::cout << "ScavTrap copy assignment operator called" << std::endl;
     if (this != &c)
         ClapTrap::operator=(c);
 
@@ -47,7 +47,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &c)
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap destructor called\n";
+    std::cout << "ScavTrap destructor called" << std::endl;
 }
 
 void ScavTrap::guardGate()
@@ -66,5 +66,5 @@ void ScavTrap::attack(const std::string& target)
 	std::cout	<< "ScavTrap " << _name
 				<< " attacks " << target
 				<< ", causing " << _attackDamage
-				<< " points of damage!\n";
+				<< " points of damage!" << std::endl;
 }

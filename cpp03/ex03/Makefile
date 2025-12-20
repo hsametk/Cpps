@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = DiamondTrap.out
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow

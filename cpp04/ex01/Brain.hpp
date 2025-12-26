@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/26 13:16:12 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 17:47:54 by hakotu           ###   ########.fr       */
+/*   Created: 2025/12/26 17:40:19 by hakotu            #+#    #+#             */
+/*   Updated: 2025/12/26 17:41:40 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-#include <string>
 #include <iostream>
-#include "Animal.hpp"
-#include "Brain.hpp"
-
-class Cat : public Animal
+#include <string>
+class Brain
 {
-    protected:
-        std::string _type;
-    private:
-        Brain* brain;
-    public:
-        Cat();
-        Cat(const std::string& type);
-        Cat(const Cat &copy);
-        virtual ~Cat();
-    Cat &operator=(const Cat &c);
-    std::string getType() const;
-    virtual void makeSound() const;
-    Brain* getBrain() const;
+private:
+    std::string ideas[100];
+public:
+    Brain();
+    Brain(const Brain &copy);
+    Brain& operator=(const Brain &c);
+    ~Brain();
     void setIdea(int index, const std::string& idea);
-    void getIdeas() const;
+    std::string getIdea(int index) const;
 };
-#endif
+#endif  

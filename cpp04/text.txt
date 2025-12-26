@@ -1,0 +1,13 @@
+İstersen bir sonraki adımda:
+
+❓ ex03 (WrongAnimal / WrongCat) mantığını
+
+❓ Brain deep copy kontrolünü
+
+❓ “neden Brain pointer olmak zorunda?”
+
+❓ “Animal abstract olunca copy constructor mantığı değişir mi?”
+
+❓ “Abstract class OCF’ye uyar mı?”
+
+❓ ex02’de evaluator trick’leri

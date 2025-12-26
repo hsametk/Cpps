@@ -15,6 +15,10 @@ int main()
     j->makeSound();
     meta->makeSound();
 
+    delete meta;
+    delete j;
+    delete i;
+
     std::cout << "----- WrongAnimal Test -----" << std::endl;
     WrongAnimal* wa = new WrongAnimal();
     WrongAnimal* wcat_as_base = new WrongCat();

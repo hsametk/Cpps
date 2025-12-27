@@ -6,13 +6,13 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:54:02 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 14:21:13 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/27 17:45:07 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : _type("Cat")
+Cat::Cat() : Animal("Cat"), _type("Cat")
 {
     std::cout << "Cat default constructor called" << std::endl;
 }

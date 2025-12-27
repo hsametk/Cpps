@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/27 17:32:48 by hakotu            #+#    #+#             */
+/*   Updated: 2025/12/27 17:34:23 by hakotu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 #include "WrongAnimal.hpp"
-
-#include <cstdio>
 #include <cstdlib>
 int main()
 {
@@ -24,15 +33,13 @@ int main()
     delete i;
     std::cout << "----- WrongAnimal Test -----" << std::endl;
     WrongAnimal* wa = new WrongAnimal();
-    WrongAnimal* wcat_as_base = new WrongCat();
-    std::cout << wcat_as_base->getType() << std::endl;
-    wcat_as_base->makeSound(); // prints WrongAnimal sound (NOT WrongCat)
+    WrongAnimal* wcat = new WrongCat();
+    std::cout << wcat->getType() << std::endl;
+    wcat->makeSound();
     delete wa;
-    delete wcat_as_base;
+    delete wcat;
 
-    std::cout << "----- WrongAnimal Test -----" << std::endl;
-    std::cout << "----- WrongAnimal Test -----" << std::endl;
-    	std::cout << "\033[34mConstructing\033[0m" << std::endl;
+	std::cout << "Constructing" << std::endl;
 	const Animal	*meta[10];
 	for (int idx = 0; idx < 10; idx++)
 	{
@@ -41,8 +48,7 @@ int main()
 			meta[idx] = new Cat();
 			if (meta[idx] == NULL)
 			{
-				perror("Cat allocation failed");
-				std::cerr << "Exiting process now";
+				std::cerr << "Cat allocation failed" << std::endl;
 				exit(1);
 			}
 		}
@@ -51,15 +57,14 @@ int main()
 			meta[idx] = new Dog();
 			if (meta[idx] == NULL)
 			{
-				perror("Dog allocation failed");
-				std::cerr << "Exiting process now";
+				std::cerr << "Dog allocation failed" << std::endl;
 				exit(1);
 			}
 		}
 	}
 	std::cout << std::endl;
 
-    	std::cout << "\033[34mTesting\033[0m" << std::endl;
+    std::cout << "Testing" << std::endl;
 	for (int idx = 0; idx < 10; idx++)
 	{
 		std::cout << std::endl;
@@ -69,7 +74,7 @@ int main()
 	}
 	std::cout << std::endl;
 
-	std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+	std::cout << "Deconstructing" << std::endl;
 	for (int idx = 0; idx < 10; idx++)
 		delete(meta[idx]);
 
@@ -77,13 +82,12 @@ int main()
 	std::cout << "#### showing that the copy constructor creates a deep copy ####" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "\033[34mConstructing\033[0m" << std::endl;
+	std::cout << "Constructing" << std::endl;
 	Dog *a = new Dog();
 	// Cat *a = new Cat();
 	if (a == NULL)
 	{
-		perror("Allocation failed");
-		std::cerr << "Exiting the process now." << std::endl;
+		std::cout << "Allocation failed" << std::endl;
 		exit(1);
 	}
 
@@ -96,27 +100,26 @@ int main()
 	// Cat *b = new Cat(*a);
 	if (b == NULL)
 	{
-		perror("Allocation failed");
-		std::cerr << "Exiting the process now." << std::endl;
+		std::cout << "Allocation failed" << std::endl;
 		exit(1);
 	}
 	std::cout << std::endl;
 
-	std::cout << "\033[34mTesting a\033[0m" << std::endl;
+	std::cout << "Testing a" << std::endl;
 	std::cout << "The " << a->getType() << " a has the following ideas: " << std::endl;
 	a->getIdeas();
 	std::cout << std::endl;
 
-	std::cout << "\033[34mDeconstructing a\033[0m" << std::endl;
+	std::cout << "Deconstructing a" << std::endl;
 	delete(a);
 	std::cout << std::endl;
 
-	std::cout << "\033[34mTesting b\033[0m" << std::endl;
+	std::cout << "Testing b" << std::endl;
 	std::cout << "The " << b->getType() << " b has the following ideas: " << std::endl;
 	b->getIdeas();
 	std::cout << std::endl;
 
-	std::cout << "\033[34mDeconstructing b\033[0m" << std::endl;
+	std::cout << "Deconstructing b" << std::endl;
 	delete(b);
     return 0;
 }

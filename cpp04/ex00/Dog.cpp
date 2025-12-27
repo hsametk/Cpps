@@ -6,18 +6,18 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 13:22:02 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 14:22:27 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/27 17:46:44 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog() : _type("Dog")
+Dog::Dog() : Animal("Dog"),_type("Dog")
 {
     std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(const std::string& type) : _type(type)
+Dog::Dog(const std::string& type) : Animal(type), _type(type)
 {
     std::cout << "Dog constructor called" << std::endl;    
 }

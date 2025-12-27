@@ -6,19 +6,19 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:54:02 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 17:47:55 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/27 16:47:29 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : _type("Cat")
+Cat::Cat() : Animal("Cat"), _type("Cat")
 {
     std::cout << "Cat default constructor called" << std::endl;
     brain = new Brain();
 }
 
-Cat::Cat(const std::string& type) : _type(type)
+Cat::Cat(const std::string& type) : Animal("Cat"), _type(type)
 {
     std::cout << "Cat constructor called" << std::endl;    
     brain = new Brain();

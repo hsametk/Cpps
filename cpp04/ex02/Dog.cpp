@@ -6,25 +6,25 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 13:22:02 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/27 16:48:32 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/29 13:04:32 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog() : Animal("Dog"), _type("Dog")
+Dog::Dog() : Animal("Dog")
 {
     std::cout << "Dog default constructor called" << std::endl;
     brain = new Brain();
 }
 
-Dog::Dog(const std::string& type) : Animal("Dog"), _type(type)
+Dog::Dog(const std::string& type) : Animal(type)
 {
     std::cout << "Dog constructor called" << std::endl;    
     brain = new Brain();
 }
 
-Dog::Dog(const Dog &copy) : _type(copy._type)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
      std::cout << "Dog " << _type << " copy-constructed"  << std::endl;
      brain = new Brain(*copy.brain);

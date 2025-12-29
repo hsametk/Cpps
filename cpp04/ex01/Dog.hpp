@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 13:20:26 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 17:47:56 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/29 12:43:30 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 class Dog : public Animal
 {
-    protected:
-        std::string _type;
     private:
         Brain* brain;
     public:

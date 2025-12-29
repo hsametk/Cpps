@@ -6,7 +6,7 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 13:16:12 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 17:47:54 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/29 13:03:45 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 class Cat : public Animal
 {
-    protected:
-        std::string _type;
     private:
         Brain* brain;
     public:

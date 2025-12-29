@@ -6,23 +6,23 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 14:51:09 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/26 14:52:48 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/29 12:55:46 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() : _type("WrongCat")
+WrongCat::WrongCat() : WrongAnimal("default")
 {
     std::cout << "WrongCat default constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const std::string& type) : _type(type)
+WrongCat::WrongCat(const std::string& type) : WrongAnimal(type)
 {
     std::cout << "WrongCat constructor called" << std::endl;    
 }
 
-WrongCat::WrongCat(const WrongCat &copy) : _type(copy._type)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
      std::cout << "WrongCat " << _type << " copy-constructed"  << std::endl;
 }

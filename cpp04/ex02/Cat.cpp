@@ -6,25 +6,25 @@
 /*   By: hakotu <hakotu@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:54:02 by hakotu            #+#    #+#             */
-/*   Updated: 2025/12/27 16:48:19 by hakotu           ###   ########.fr       */
+/*   Updated: 2025/12/29 13:04:04 by hakotu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : Animal("Cat"), _type("Cat")
+Cat::Cat() : Animal("Cat")
 {
     std::cout << "Cat default constructor called" << std::endl;
     brain = new Brain();
 }
 
-Cat::Cat(const std::string& type) : Animal("Cat"), _type(type)
+Cat::Cat(const std::string& type) : Animal(type)
 {
     std::cout << "Cat constructor called" << std::endl;    
     brain = new Brain();
 }
 
-Cat::Cat(const Cat &copy) : _type(copy._type)
+Cat::Cat(const Cat &copy) : Animal(copy)
 {
      std::cout << "Cat " << _type << " copy-constructed"  << std::endl;
      brain = new Brain(*copy.brain);

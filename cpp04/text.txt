@@ -11,3 +11,14 @@
 ❓ “Abstract class OCF’ye uyar mı?”
 
 ❓ ex02’de evaluator trick’leri
+
+
+polimorfizim nedir?
+
+çoklu olan fonksiyonu virtual yaparak örneğin kedi köpek seslerini çalıştıran 
+fonksiyonun doğru çalışmasını sağlarız. Virtual yapmazsak default makeSound fonksiyonu çalışır ve yanlış olur.
+Objenin tipine göre çalışır.
+
+Abstract class ise?
+virtual fonksiyonu 0 a eşitleriz bu demek olur ki bu pure virtual yani bunu inherit edenlerin
+kendi makesound u olması gerekir. 

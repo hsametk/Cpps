@@ -1,0 +1,271 @@
+Orthodox Canonical Form Nedir?
+
+Bir sınıfın “canonical” yani doğru, standart, eksiksiz kabul edilebilmesi için 4 fonksiyonun 
+tanımlanması gerekir.
+
+Çünkü bir sınıfın:
+
+Oluşturulması
+Bu zaten diğer cpp lerde de yaptığımız şey.
+
+Kopyalanması
+Bir nesne yeni oluşturulurken, başka bir nesneden kopyalanıyorsa çalışır.
+
+Birbirine atanması
+Zaten var olan bir nesne başka bir nesneye eşitlendiğinde çağrılır.
+
+Yok edilmesi
+Buda default olarak yaptığımız şeylerde.
+gibi hayattaki tüm olaylar düzenli ve güvenli bir şekilde gerçekleşmelidir.
+
+
+Orthodox Canonical Form, bir C++ sınıfının güvenli ve doğru şekilde kopyalanabilmesi, taşınabilmesi ve 
+yok edilebilmesi için gerekli olan 4 fonksiyonun (default ctor, copy ctor, copy assignment operator, destructor)
+birlikte tanımlanmasıdır.
+Bunlar sınıfın tam yaşam döngüsünü kontrol eder ve C++’ta bellek güvenliği için temel bir best practice’tir.
+
+//Önemli
+_fracBits bir “sınıf sabiti”dir. Bu yüzden static const yapılır.
+
+//Ex00 için fonksiyonları nasıl atadığına bak ve main e çalış.
+
+
+//Ex01
+
+fracBits virgülü kaç bit sağa kaydırıp virgüllü haale getireceğimizi belirleyen sayı.
+Normalde float sayılar binary olarak saklanır ve bazı sayılar tam temsil edilemez.
+
+Örnek:
+0.1 + 0.2 = 0.3000000004 (precision kaybı)
+
+Bazı sistemlerde (gömülü cihaz, DSP, bazı grafik motorları) float desteklenmez veya çok yavaştır.
+Bu yüzden float yerine integer kullanarak virgüllü sayı simüle ederiz.
+
+Bu sisteme fixed point denir.
+
+//Fixed point mantığı
+gerçek sayı * 2^fractionBits = integer
+
+_raw bizim sayımız, static const int _fracBits = 8;
+
+2^8 = 256
+
+Örnek
+3.5 * 256 = 896   _raw = 896
+
+//int --> fixed dönüşümü
+Bir tam sayı zaten virgülsüzdür.
+
+raw= int_value *256
+_raw = n << _fracBits
+
+//bir sayıyı 8 bit sola kaydırmak 256 ile çarmak ile aynıdır.
+
+//float --> fixed dönüşümü
+raw = roundf(float_value * 256)
+5.75 * 256 = 1472
+
+c++ da _raw = roundf(f * (1 << _fracBits));
+Neden roudf?
+çünkü raw intager olmak zorunda yuvarlama yapılmazsa veri kayması oluşturulurken
+
+
+//Fixed --> float dönüşümü
+Fixed formdaki sayıyı tekrar normal hayattaki float'a çevirmek için:
+float_value = raw / 256.0f
+
+
+
+//fixed --> int döngüsümü
+int_value = raw / 256
+return _raw >> _fracBits
+
+
+
+// 6. operator<< overload
+
+Sabitleştirilmiş sayı aslında içeride integer.
+
+
+//özet
+EX01, fixed-point mantığının matematiksel kısmını gerçekleştiriyor.
+
+Int’leri fixed forma çevirmek için raw = n << _fracBits kullanıyoruz.
+
+Float’ları çevirirken roundf(f * (2^fracBits)) yapıyoruz.
+
+toFloat() fonksiyonu fixed değeri gerçek bir float’a döndürüyor: raw / 256.
+
+toInt() ise 256’ya bölüp tam sayıyı alıyor: raw >> 8.
+
+operator<< overload ederek fixed point değerini float gibi yazdırıyoruz.
+
+Böylece kendi yaptığımız tarzda bir “float” veri tipi yaratmış oluyoruz ama içeride tamamen integer aritmetiği kullanıyoruz.
+
+
+
+//ex02
+
+EX02 İçinde Öğretilen Ana Kavramlar
+
+Operator overloading
+
+Fixed-point aritmetiği
+
+Prefix & postfix farkı
+
+static fonksiyon mantığı
+
+const correctness
+
+Return by reference vs. return by value
+
+❗ Ama kendi sınıfını (Fixed) toplamak isteyince NE OLUR?
+Fixed a(1.5f);
+Fixed b(2.25f);
+
+Fixed c = a + b;   // HATA!
+
+
+Dil şunu sorar:
+
+“Ben Fixed tipi için + nasıl çalışır bilmiyorum.”
+
+C++ built-in tipler için +’yı biliyor,
+ama senin sınıfın için bilmiyor.
+
+İşte tam burada devreye giriyor:
+
+✅ 2) Operatör overloading neden var?
+
+C++ bize diyor ki:
+
+“Hazır operatörleri kendi sınıfın için yeniden tanımlayabilirsin.”
+
+Bunun adı operator overloading.
+
+Sen kendi sınıfına şunu öğretiyorsun:
+“Fixed+Fixed → nasıl toplanır?”
+
+Örnek:
+
+Fixed Fixed::operator+(const Fixed& rhs) const {
+    Fixed result;
+    result._raw = this->_raw + rhs._raw;
+    return result;
+}
+
+
+Bu sayede şunu kullanabiliyorsun:
+
+Fixed c = a + b;
+
+
+Yani operatör C++’ta zaten var,
+ama senin sınıfın için yok.
+
+Senin görevin:
+dilin operatörlerini kendi sınıfına adapte etmek.
+
+amaç operator overloading i öğretmek.
+
+
+//Kopyalamanın farkları
+Kısa ve net özet 👇
+
+✅ Shallow Copy (Yüzeysel Kopya)
+
+Sadece değerleri kopyalar.
+
+Pointer varsa adresini kopyalar → iki obje aynı belleği paylaşır.
+
+Dinamik bellek varsa tehlikeli olabilir.
+
+✅ Deep Copy (Derin Kopya)
+
+Hem değerleri hem de pointer’ın gösterdiği veriyi kopyalar.
+
+Her objeye ayrı bir bellek alanı verir.
+
+Dinamik bellek kullanan sınıflarda güvenli ve gereklidir.
+
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+{
+    os << fixed.toFloat();
+    return (os);
+}
+
+bu nedir ve neden kullanıyoruz?
+fonksiyon amacı cout << fixedObj; yazabilmeni sağlar.
+Çünkü C++ "Fixed nasıl yazdırılır?" bilmiyor.
+
+Bu fonksiyon şunu sağlar:
+
+std::cout << fixedObj;
+
+
+os → çıktı akımı (cout)
+
+fixed → yazdırılacak nesne
+
+fixed.toFloat() → float’a çevirip yazdırıyor
+
+return os; → zincirleme yazdırmayı mümkün kılıyor.
+
+fonksiyonun sonundaki constlara tekrar bak
+✅ 1) Pre-increment / Post-increment operatörlerinde const KULLANAMAZSIN
+
+Aşağıdakiler:
+
+Fixed& Fixed::operator++()
+Fixed Fixed::operator++(int)
+Fixed& Fixed::operator--()
+Fixed Fixed::operator--(int)
+
+
+const olamaz çünkü:
+
+Bu operatörler objeyi değiştirir (_raw++, _raw--).
+
+const üye fonksiyon demek: objeyi değiştirmeyeceğim demektir.
+
+Bu operatörlerin amacı zaten sayının değerini değiştirmektir.
+
+| Fonksiyon                         | const olabilir mi?                          | Neden?                        |
+| --------------------------------- | ------------------------------------------- | ----------------------------- |
+| `operator++()`                    | ❌                                           | nesneyi değiştiriyor          |
+| `operator++(int)`                 | ❌                                           | nesneyi değiştiriyor          |
+| `operator--()`                    | ❌                                           | nesneyi değiştiriyor          |
+| `operator--(int)`                 | ❌                                           | nesneyi değiştiriyor          |
+| `min(Fixed&, Fixed&)`             | ❌                                           | non-const referans döndürüyor |
+| `min(const Fixed&, const Fixed&)` | ⚠️ Teknik olarak olabilir ama gerekli değil | çünkü this kullanılmıyor      |
+| `max(Fixed&, Fixed&)`             | ❌                                           | non-const referans döndürüyor |
+| `max(const Fixed&, const Fixed&)` | ⚠️ Olabilir ama **subject bunu beklemiyor** | anlamsız const                |
+
+int → postfix (++/--) operatörünü ayırmak için C++’ın istediği dummy parametredir.
+
+İçeride kullanılmaz.
+
+Değer taşımaz.
+
+Sadece "bu postfix" demek içindir.
+
+
+//nedne os returnlenir
+
+zincirleme yazılabilmesi için
+
+
+
+
+
+//
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+neden class ın dışında yazılıyor
+
+operator<< sınıfın dışında yazılır çünkü sol operand std::ostream’dir ve onun üye operatörünü değiştiremezsin.
+C++’ta sol operand sınıfın kendisi olmadıkça operatörü sınıf içine yazamazsın.
+
+Bu nedenle global/friend olarak yazılır.
+

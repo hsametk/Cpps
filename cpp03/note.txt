@@ -1,0 +1,133 @@
+
+// Virtual public nedir?
+Tek cümlelik özet (aklında kalsın)
+
+public → erişim (dışarıdan nasıl görünür)
+
+virtual → yapı (tek ClapTrap mi, iki ClapTrap mi)
+
+virtual public ClapTrap → DiamondTrap’te ClapTrap sadece 1 tane olsun diye
+
+
+| Nereden erişim      | public | protected | private |
+| ------------------- | ------ | --------- | ------- |
+| Aynı class          | ✅      | ✅         | ✅       |
+| Child class         | ✅      | ✅         | ❌       |
+| Dışarıdan (objeyle) | ✅      | ❌         | ❌       |
+
+
+ClapTrap’te neden protected olmalı?
+
+Çünkü:
+
+ScavTrap
+
+FragTrap
+
+DiamondTrap
+
+hepsi ClapTrap’in statlarını kullanıyor.
+
+Eğer ClapTrap’te bunlar private olsaydı:
+
+Child class’lar hiçbirine erişemezdi
+
+Sürekli getter/setter yazman gerekirdi
+
+42 projelerinde gereksiz karmaşa
+
+
+//virtual public nedir?
+
+virtual public,
+
+“Bu class, base class’ı tek ve ortak bir kopya olarak miras alsın ve erişimi public olsun.”
+demektir.
+
+Bu virtual şunu söyler:
+
+“ClapTrap’i ayrı ayrı kopyalama,
+eğer başka bir class da ClapTrap’i miras alıyorsa tek bir tane kullan.”
+
+Diamond problemi çözmek için kullanıyoruz.
+
+“virtual public kullandım çünkü DiamondTrap’te ClapTrap’in sadece tek bir instance olmasını istiyorum
+ve base class fonksiyonlarının erişimi public kalsın.”
+
+3️⃣ Constructor & Destructor chaining — ⚠️ Sorulur
+
+Bilmen gereken:
+
+DiamondTrap d("Samet");
+
+
+Çalışma sırası:
+
+ClapTrap
+
+ScavTrap
+
+FragTrap
+
+DiamondTrap
+
+Yıkım sırası tersidir:
+
+DiamondTrap
+
+FragTrap
+
+ScavTrap
+
+ClapTrap
+
+Eval cevabı:
+
+“C++ önce base class’ları, sonra derived class’ı kurar; destruction ters sıradadır.”
+
+
+
+
+//Shadowing
+🧠 Eval’de sorarlarsa hazır cevap
+
+“DiamondTrap’te _name shadowing’i bilinçli olarak kullandım çünkü subject bunu istiyor. -Wshadow aktif değil, dolayısıyla uyarı üretmiyor.”
+
+📌 Mini Özet
+
+Shadowing = Aynı isimli değişkenle üsttekini gizlemek
+
+-Wshadow = Shadowing varsa uyar
+
+-Wno-shadow = O uyarıyı kapat
+
+CPP03’te DiamondTrap bilinçli shadowing yapıyor
+
+42’de -Wshadow kullanmak zorunlu değil
+
+
+//Ambiguity (Belirsizlik) Nedir?
+
+Ambiguity, C++’ın hangi fonksiyonu / değişkeni kullanacağını bilememesi durumudur.
+
+Bu durum çoklu miras (multiple inheritance) olduğunda ortaya çıkar.
+
+Ambiguity nasıl oluşur?
+
+DiamondTrap içinde şunu yazarsan:
+
+attack("target");
+
+
+Derleyici şunu sorar:
+
+“Hangi attack?”
+
+ScavTrap::attack() mı?
+
+FragTrap::attack() mı?
+
+👉 C++ karar veremez → ambiguity hatası
+
+“DiamondTrap çoklu miras aldığı için attack() fonksiyonu ambiguous oluyor.
+Bu yüzden ScavTrap::attack() çağırarak belirsizliği giderdim.”

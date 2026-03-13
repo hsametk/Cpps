@@ -12,20 +12,17 @@ class Bureaucrat
 		int					_grade;
 
 	public:
-		// Constructors
 		Bureaucrat();
 		Bureaucrat(const std::string& name, int grade);
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat &operator=(const Bureaucrat &other);
 		~Bureaucrat();
 
-		// Member functions
 		const std::string&	getName() const;
 		int			getGrade() const;
 		void		incrementGrade();
 		void		decrementGrade();
 
-		// Exceptions
 		class GradeTooHighException : public std::exception
 		{
 			public:

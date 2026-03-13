@@ -1,0 +1,53 @@
+
+Exception Nedir?
+Exception hata fırlatmamızı sağlar. C'de bunu return ile yapıyorduk ve ardından program sonlanıyordu.
+Burada hata mesajını yazdıktan sonra program sonlanmaz ve çalışmaya devam edebilir.
+Ve her hatayı handle ettiğimiz case'de leak kontrolü de yapmak zorundaydık C'de, bunda en son çıkarken
+destructor'da 1 kere yapabiliriz.
+
+Yakalanmayan Exception'lar
+Eğer hiçbir catch bloğu yakalamazsa, program std::terminate() ile sonlanır (crash eder).
+Bu yüzden main()'de genel bir catch (const std::exception& e) koymak iyi fikir.
+
+Orijinal exception kullanımı
+
+try {
+    throw std::runtime_error("message");
+}
+catch(const std::exception& e)
+{
+    std::cerr << e.what() << std::endl;
+}
+
+Biz bu exception'u inherit ederek özelleştiriyoruz. Bunu nasıl yapıyoruz?
+std::exception sınıfından inherit ederek kullanıyoruz ve what() metodunu override ediyoruz.
+
+class GradeTooHigh : public std::exception
+{
+    public:
+        virtual const char *what() const throw();
+};
+
+std::ostream &operator<<(std::ostream & os, Bureaucrat const &other);
+Bu bizim << operatörünü overload ettiğimiz fonksiyondur. Bureaucrat nesnelerini stream'lere (cout vb.) 
+yazdırmak için kullanılır.
+ostream bir sınıftır.
+
+Operator Overloading Detayları
+- Operator overloading, C++'ta + , - , << gibi operatörleri kendi sınıflarınız için yeniden tanımlamaktır.
+- << operatörü normalde cout << "merhaba"; için kullanılır. Biz Bureaucrat için overload ederek cout << bureaucrat; yapabiliyoruz.
+- Fonksiyon global veya friend olarak tanımlanır, çünkü sol operand (cout) bizim sınıfımız değil.
+- Dönüş değeri std::ostream& olmalı ki zincirleme (cout << a << b) çalışsın.
+- Parametreler: std::ostream& os (stream referansı), Bureaucrat const& other (nesne, değiştirilmez).
+
+Örnek Kullanım
+std::ostream &operator<<(std::ostream & os, Bureaucrat const &other) {
+    os << other.getName() << ", grade " << other.getGrade();
+    return os;
+}
+// Şimdi main'de: Bureaucrat b("Ali", 5); cout << b; // "Ali, grade 5" yazdırır.
+
+Neden Önemli?
+- Kod okunabilirliğini artırır.
+- Standart kütüphane sınıfları gibi davranır (cout << int gibi).
+- Debug ve log için kolaylık sağlar. 

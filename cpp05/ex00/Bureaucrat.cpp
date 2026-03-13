@@ -58,7 +58,6 @@ std::ostream &operator<<(std::ostream &os, Bureaucrat const &other)
 	return (os);
 }
 
-
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
     return ("Grade too high!");

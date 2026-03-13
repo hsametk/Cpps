@@ -65,3 +65,45 @@ EX01 Nedir
 
 Form doc("doc", 75, 50);
 name, sign_grade, execute grade
+
+buradaki fark sign kısmı aşşağıdaki gibi oluyor.
+void Bureaucrat::signForm(Form &form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getName() << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cout << _name << " couldn’t sign "
+                  << form.getName()
+                  << " because "
+                  << e.what()
+                  << std::endl;
+    }
+}
+
+void Form::beSigned(const Bureaucrat &bureaucrat)
+{
+    if (bureaucrat.getGrade() <= _sign_grade)
+        _is_signed = true;
+    else
+        throw GradeTooLowException();
+
+}
+
+şimdi burada ilk olarak signform çalışıyor buradan besigned a gidiyor eğer burada if koşulu sağlanmazsa throw çalışıyor ve signformdaki expection yakalnıyor ve 
+std::cout << _name << " couldn’t sign "
+                  << form.getName()
+                  << " because "
+                  << e.what()
+                  << std::endl;
+                  buradaki kısım çalışıyor değil mi
+
+Forward Declaration Nedir?
+- C++'ta, iki sınıf birbirine referans veriyorsa (ör. Bureaucrat Form'a, Form Bureaucrat'a), circular include önlemek için kullanılır.
+- Tam tanım yerine sadece "class ClassName;" bildirimi yapılır.
+- Referans/pointer için yeterli, tam tanım include edilmeden kullanılabilir.
+- Örnek: Bureaucrat.hpp'de "class Form;" → signForm(Form &form) için yeterli.
+- Form.hpp'de "class Bureaucrat;" ve #include "Bureaucrat.hpp" → beSigned için tam tanım gerekli.

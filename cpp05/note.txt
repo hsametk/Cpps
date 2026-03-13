@@ -51,3 +51,17 @@ Neden Önemli?
 - Kod okunabilirliğini artırır.
 - Standart kütüphane sınıfları gibi davranır (cout << int gibi).
 - Debug ve log için kolaylık sağlar. 
+
+
+EX00 Nedir
+Burada bir brokrat sistemi kurmamızı istiyor.
+1 en yüksek derece
+150 en düşük derece.
+
+Bu değer aralığındakiler hata verir.
+Ve doğru değerle başlatılmış kişiler 1 den yükseltilmek veya 150 den düşürülmek istenirse hata verir.
+
+EX01 Nedir
+
+Form doc("doc", 75, 50);
+name, sign_grade, execute grade

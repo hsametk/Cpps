@@ -1,0 +1,24 @@
+
+C++ Scalar (Skaler) Tipler: Kısa Not
+Tanım: Tek bir değeri temsil eden, daha küçük parçalara bölünemeyen en temel veri türleridir.
+
+Özellikler: * Atomiktir: Bir int içinden başka bir tip çıkmaz.
+
+Hızlıdır: Bellekte kopyalanmaları ve işlenmeleri çok pratiktir.
+
+Bileşik Değildir: Dizi (array) veya Sınıf (class) gibi içinde birden fazla veri barındırmaz.
+
+Neler Skalerdir?
+
+Sayılar: int, float, double, char, bool.
+
+Adresler: Tüm işaretçiler (Pointers - int*, void* vb.).
+
+Listeler: enum ve enum class.
+
+Boşluk: nullptr_t.
+
+Özetle: Skaler = "Tekil ve bölünemez değer."
+
+// Bir ipucu: Eğer bir tipin skaler olup olmadığını kod içinde kontrol etmek istersen,
+//  <type_traits> kütüphanesindeki std::is_scalar<T>::value ifadesini kullanabilirsin.

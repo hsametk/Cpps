@@ -6,21 +6,15 @@
 # include <string>
 # include <exception>
 
-class ScalarConverter
+class	ScalarConverter
 {
-    private:
-        ScalarConverter(/* args */);
-        ~ScalarConverter();
-    public:
-        static void convert(const std::string &input);
+	private:
+		ScalarConverter(void);
+		ScalarConverter(ScalarConverter const &src);
+		~ScalarConverter(void);
+		ScalarConverter	&operator=(ScalarConverter const &rhs);
+	public:
+		static void	convert(const std::string& str);
 };
-
-ScalarConverter::ScalarConverter(/* args */)
-{
-}
-
-ScalarConverter::~ScalarConverter()
-{
-}
 
 #endif

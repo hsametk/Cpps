@@ -4,7 +4,6 @@
 
 # include <iostream>
 # include <string>
-# include <exception>
 
 class	ScalarConverter
 {
@@ -13,6 +12,19 @@ class	ScalarConverter
 		ScalarConverter(ScalarConverter const &src);
 		~ScalarConverter(void);
 		ScalarConverter	&operator=(ScalarConverter const &rhs);
+
+		enum eType
+		{
+			CHAR,
+			INT,
+			FLOAT,
+			DOUBLE,
+			PSEUDO_FLOAT,  // nanf, +inff, -inff
+			PSEUDO_DOUBLE  // nan, +inf, -inf
+		};
+
+		static eType	detectType(const std::string& str);
+
 	public:
 		static void	convert(const std::string& str);
 };

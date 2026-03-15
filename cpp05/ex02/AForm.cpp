@@ -64,7 +64,6 @@ std::ostream &operator<<(std::ostream &os,  AForm const &Aform)
 	return (os);
 }
 
-
 const char *AForm::GradeTooHighException::what() const throw()
 {
     return ("Grade too high!");

@@ -55,7 +55,6 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
     return "Grade too low!";
 }
 
-// ✅ ex02: executeForm(AForm const&)
 void Bureaucrat::executeForm(AForm const &form) const
 {
     try
@@ -70,7 +69,6 @@ void Bureaucrat::executeForm(AForm const &form) const
     }
 }
 
-// ✅ ex02: signForm(AForm &)
 void Bureaucrat::signForm(AForm &form)
 {
     try

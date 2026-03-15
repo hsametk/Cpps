@@ -35,14 +35,33 @@ void ShrubberyCreationForm::executeAction() const
     std::ofstream newfile((_target + std::string("_shrubbery")).c_str());
     if (newfile.is_open())
     {
-        newfile << "    /\\    \n";
-		newfile << "   /  \\   \n";
-		newfile << "  /    \\  \n";
-		newfile << " /      \\ \n";
-		newfile << "/________\\\n";
-		newfile << "    ||    \n";
-		newfile << "    ||    \n";
-		newfile << "    ||    \n";
+        newfile << "                                              .         ;  \n";
+        newfile << "                 .              .              ;%     ;;   \n";
+        newfile << "                   ,           ,                :;%  %;   \n";
+        newfile << "                    :         ;                   :;%;'     .,   \n";
+        newfile << "           ,.        %;     %;            ;        %;'    ,;\n";
+        newfile << "             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n";
+        newfile << "              %;       %;%;      ,  ;       %;  ;%;   ,%;' \n";
+        newfile << "               ;%;      %;        ;%;        % ;%;  ,%;'\n";
+        newfile << "                `%;.     ;%;     %;'         `;%%;.%;'\n";
+        newfile << "                 `:;%.    ;%%. %@;        %; ;@%;%'\n";
+        newfile << "                    `:%;.  :;bd%;          %;@%;'\n";
+        newfile << "                      `@%:.  :;%.         ;@@%;'   \n";
+        newfile << "                        `@%.  `;@%.      ;@@%;         \n";
+        newfile << "                          `@%%. `@%%    ;@@%;        \n";
+        newfile << "                            ;@%. :@%%  %@@%;       \n";
+        newfile << "                              %@bd%%%bd%%:;     \n";
+        newfile << "                                #@%%%%%:;;\n";
+        newfile << "                                %@@%%%::;\n";
+        newfile << "                                %@@@%(o);  . '         \n";
+        newfile << "                                %@@@o%;:(.,'         \n";
+        newfile << "                            `.. %@@@o%::;         \n";
+        newfile << "                               `)@@@o%::;         \n";
+        newfile << "                                %@@(o)::;        \n";
+        newfile << "                               .%@@@@%::;         \n";
+        newfile << "                               ;%@@@@%::;.          \n";
+        newfile << "                              ;%@@@@%%:;;;. \n";
+        newfile << "                          ...;%@@@@@%%:;;;;,..    \n";
 
 		newfile.close();
     }

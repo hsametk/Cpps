@@ -41,7 +41,7 @@ void RobotomyRequestForm::executeAction() const
 
     std::cout << "* drilling noises *" << std::endl;
 
-    if (std::rand() % 2)
+    if (std::rand() % 2 == 0)
         std::cout << _target << " has been robotomized successfully" << std::endl;
     else
         std::cout << "Robotomy failed on " << _target << std::endl;

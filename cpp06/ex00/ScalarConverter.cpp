@@ -103,4 +103,77 @@ void ScalarConverter::convert(const std::string& str)
 			break;
 	}
 }
+//TODO:enum a INVALID eklenecek detectype en son int te bitmeyecek.
+//TODO:isIntLiteral(str) isFloatLiteral(str) isDoubleLiteral(str) bu fonksiyonların yazılması lazım.
+//TODO:
+/*
+Mantık nasıl olmalı?
+isIntLiteral
+
+Geçerli örnekler:
+
+0
+
+42
+
+-42
+
++42 istersen kabul edebilirsin
+
+Kurallar:
+
+başta opsiyonel + / -
+
+geri kalan tüm karakterler digit olmalı
+
+en az bir digit olmalı
+
+isFloatLiteral
+
+Geçerli örnekler:
+
+0.0f
+
+42.0f
+
+-4.2f
+
+Kurallar:
+
+son karakter f
+
+sondaki f hariç içerikte tam bir decimal sayı olmalı
+
+bir tane . olmalı
+
+.’nin iki yanında da en az bir digit olmalı
+
+başta opsiyonel sign olabilir
+
+Yani:
+
+4.2f geçerli
+
+.2f bence alma
+
+4.f bence alma
+
+42ff alma
+
+..f alma
+
+isDoubleLiteral
+
+Geçerli örnekler:
+
+0.0
+
+42.0
+
+-4.2
+
+Kurallar:
+
+float ile aynı ama sonda f yok
+*/
 //TODO: Max int i handle lamam lazım.

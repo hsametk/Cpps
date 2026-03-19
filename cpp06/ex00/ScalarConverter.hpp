@@ -24,6 +24,11 @@ class	ScalarConverter
 		};
 
 		static eType	detectType(const std::string& str);
+		static void	printPseudo(const std::string& str, eType type);
+		static void	printChar(const std::string& str);
+		static void	printInt(const std::string& str);
+		static void	printFloat(const std::string& str);
+		static void	printDouble(const std::string& str);
 
 	public:
 		static void	convert(const std::string& str);

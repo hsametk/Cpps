@@ -20,7 +20,8 @@ class	ScalarConverter
 			FLOAT,
 			DOUBLE,
 			PSEUDO_FLOAT,  // nanf, +inff, -inff
-			PSEUDO_DOUBLE  // nan, +inf, -inf
+			PSEUDO_DOUBLE, // nan, +inf, -inf
+			INVALID
 		};
 
 		static eType	detectType(const std::string& str);
@@ -29,6 +30,10 @@ class	ScalarConverter
 		static void	printInt(const std::string& str);
 		static void	printFloat(const std::string& str);
 		static void	printDouble(const std::string& str);
+		static bool isIntLiteral(const std::string& str);
+		static bool isDoubleLiteral(const std::string& str);
+		static bool isFloatLiteral(const std::string& str);
+
 
 	public:
 		static void	convert(const std::string& str);

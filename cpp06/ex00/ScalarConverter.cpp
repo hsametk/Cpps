@@ -10,17 +10,21 @@
 
 ScalarConverter::eType ScalarConverter::detectType(const std::string& str)
 {
+	if (str.empty())
+		return INVALID;
 	if (str == "nanf" || str == "+inff" || str == "-inff")
 		return PSEUDO_FLOAT;
 	if (str == "nan" || str == "+inf" || str == "-inf")
 		return PSEUDO_DOUBLE;
 	if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
 		return CHAR;
-	if (str[str.length() - 1] == 'f' && str.find('.') != std::string::npos)
+	if (isIntLiteral(str))
+		return INT;
+	if (isFloatLiteral(str))
 		return FLOAT;
-	if (str.find('.') != std::string::npos)
+	if (isDoubleLiteral(str))
 		return DOUBLE;
-	return INT;
+	return INVALID;
 }
 
 void ScalarConverter::printPseudo(const std::string& str, eType type)
@@ -100,6 +104,9 @@ void ScalarConverter::convert(const std::string& str)
 			break;
 		case DOUBLE:
 			printDouble(str);
+			break;
+		case INVALID:
+			std::cout << "Invalid input" << std::endl;
 			break;
 	}
 }

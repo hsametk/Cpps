@@ -1,12 +1,25 @@
 #include "ScalarConverter.hpp"
+#include <exception>
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
+    try
     {
-        std::cerr << "Usage: ./convert <value>" << std::endl;
+        if (argc != 2)
+            throw std::runtime_error("Usage: ./convert <value>");
+        ScalarConverter::convert(argv[1]);
+        return 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
         return 1;
     }
-    ScalarConverter::convert(argv[1]);
+    catch(...)
+    {
+        std::cerr << "An unknown error occured." << std::endl;
+        return 1;
+    }
+    
     return 0;
 }

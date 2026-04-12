@@ -20,6 +20,4 @@ int main(int argc, char **argv)
         std::cerr << "An unknown error occured." << std::endl;
         return 1;
     }
-    
-    return 0;
 }

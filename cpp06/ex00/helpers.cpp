@@ -3,51 +3,37 @@
 
 void ScalarConverter::convert(const std::string& str)
 {
-	eType type = detectType(str);
-
-	switch (type)
-	{
-		case PSEUDO_FLOAT:
-		case PSEUDO_DOUBLE:
-			printPseudo(str, type);
-			break;
-		case CHAR:
-			printChar(str);
-			break;
-		case INT:
-			printInt(str);
-			break;
-		case FLOAT:
-			printFloat(str);
-			break;
-		case DOUBLE:
-			printDouble(str);
-			break;
-		case INVALID:
-			std::cout << "Invalid input" << std::endl;
-			break;
-	}
+	static const ConvertFunc table[] = {
+		&ScalarConverter::printChar,
+		&ScalarConverter::printInt,
+		&ScalarConverter::printFloat,
+		&ScalarConverter::printDouble,
+		&ScalarConverter::printPseudoFloat,
+		&ScalarConverter::printPseudoDouble,
+		&ScalarConverter::printInvalid,
+	};
+	table[detectType(str)](str);
 }
 
-ScalarConverter::eType ScalarConverter::detectType(const std::string& str)
+int ScalarConverter::detectType(const std::string& str)
 {
 	if (str.empty())
-		return INVALID;
+		return 6;
 	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
-		return PSEUDO_FLOAT;
+		return 4;
 	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
-		return PSEUDO_DOUBLE;
+		return 5;
 	if (str.length() == 1 && (str[0] < '0' || str[0] > '9'))
-		return CHAR;
+		return 0;
 	if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
-		return CHAR;
+		return 0;
 	if (isIntLiteral(str))
-		return INT;
+		return 1;
 	if (isFloatLiteral(str))
-		return FLOAT;
+		return 2;
 	if (isDoubleLiteral(str))
-		return DOUBLE;
-	return INVALID;
+		return 3;
+	return 6;
 }
 bool ScalarConverter::isIntLiteral(const std::string& str)
 {

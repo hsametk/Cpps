@@ -1,0 +1,447 @@
+CPP06 ex00 scalar converter tester
+Executable: /Users/samcu/Desktop/Cpps/cpp06/ex00/convert
+Generated at: 2026-04-12 22:54:50
+
+
+########################################
+GROUP: Argument Handling
+########################################
+
+========================================
+CASE: no argument
+INPUT: [__NO_ARG__]
+----------------------------------------
+Usage: ./convert <value>
+
+========================================
+CASE: empty string
+INPUT: []
+----------------------------------------
+Invalid input
+
+
+########################################
+GROUP: Char Inputs
+########################################
+
+========================================
+CASE: plain alpha
+INPUT: [a]
+----------------------------------------
+char: 'a'
+int: 97
+float: 97.0f
+double: 97.0
+
+========================================
+CASE: plain digit char rejected as char
+INPUT: [7]
+----------------------------------------
+char: Non displayable
+int: 7
+float: 7.0f
+double: 7.0
+
+========================================
+CASE: plain symbol
+INPUT: [*]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: single space
+INPUT: [ ]
+----------------------------------------
+char: ' '
+int: 32
+float: 32.0f
+double: 32.0
+
+========================================
+CASE: quoted alpha
+INPUT: ['a']
+----------------------------------------
+char: 'a'
+int: 97
+float: 97.0f
+double: 97.0
+
+========================================
+CASE: quoted space
+INPUT: [' ']
+----------------------------------------
+char: ' '
+int: 32
+float: 32.0f
+double: 32.0
+
+========================================
+CASE: quoted digit
+INPUT: ['0']
+----------------------------------------
+char: '0'
+int: 48
+float: 48.0f
+double: 48.0
+
+
+########################################
+GROUP: Integer Inputs
+########################################
+
+========================================
+CASE: zero
+INPUT: [0]
+----------------------------------------
+char: Non displayable
+int: 0
+float: 0.0f
+double: 0.0
+
+========================================
+CASE: positive
+INPUT: [42]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: negative
+INPUT: [-42]
+----------------------------------------
+char: impossible
+int: -42
+float: -42.0f
+double: -42.0
+
+========================================
+CASE: plus sign
+INPUT: [+42]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: int max
+INPUT: [2147483647]
+----------------------------------------
+char: impossible
+int: 2147483647
+float: 2.14748e+09f
+double: 2.14748e+09
+
+========================================
+CASE: int min
+INPUT: [-2147483648]
+----------------------------------------
+char: impossible
+int: -2147483648
+float: -2.14748e+09f
+double: -2.14748e+09
+
+========================================
+CASE: int overflow positive
+INPUT: [2147483648]
+----------------------------------------
+char: impossible
+int: impossible
+float: 2.14748e+09f
+double: 2.14748e+09
+
+========================================
+CASE: int overflow negative
+INPUT: [-2147483649]
+----------------------------------------
+char: impossible
+int: impossible
+float: -2.14748e+09f
+double: -2.14748e+09
+
+========================================
+CASE: char upper bound
+INPUT: [127]
+----------------------------------------
+char: Non displayable
+int: 127
+float: 127.0f
+double: 127.0
+
+========================================
+CASE: char overflow
+INPUT: [128]
+----------------------------------------
+char: impossible
+int: 128
+float: 128.0f
+double: 128.0
+
+
+########################################
+GROUP: Float Inputs
+########################################
+
+========================================
+CASE: float zero
+INPUT: [0.0f]
+----------------------------------------
+char: Non displayable
+int: 0
+float: 0.0f
+double: 0.0
+
+========================================
+CASE: float integer value
+INPUT: [42.0f]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: float decimal value
+INPUT: [4.2f]
+----------------------------------------
+char: Non displayable
+int: 4
+float: 4.2f
+double: 4.2
+
+========================================
+CASE: float negative
+INPUT: [-4.2f]
+----------------------------------------
+char: impossible
+int: -4
+float: -4.2f
+double: -4.2
+
+========================================
+CASE: float leading dot
+INPUT: [.5f]
+----------------------------------------
+char: Non displayable
+int: 0
+float: 0.5f
+double: 0.5
+
+========================================
+CASE: float trailing dot
+INPUT: [42.f]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: float signed leading dot
+INPUT: [-.5f]
+----------------------------------------
+char: impossible
+int: 0
+float: -0.5f
+double: -0.5
+
+========================================
+CASE: float pseudo nan
+INPUT: [nanf]
+----------------------------------------
+char: impossible
+int: impossible
+float: nanf
+double: nan
+
+========================================
+CASE: float pseudo inf
+INPUT: [+inff]
+----------------------------------------
+char: impossible
+int: impossible
+float: +inff
+double: +inf
+
+========================================
+CASE: float pseudo neg inf
+INPUT: [-inff]
+----------------------------------------
+char: impossible
+int: impossible
+float: -inff
+double: -inf
+
+
+########################################
+GROUP: Double Inputs
+########################################
+
+========================================
+CASE: double zero
+INPUT: [0.0]
+----------------------------------------
+char: Non displayable
+int: 0
+float: 0.0f
+double: 0.0
+
+========================================
+CASE: double integer value
+INPUT: [42.0]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: double decimal value
+INPUT: [4.2]
+----------------------------------------
+char: Non displayable
+int: 4
+float: 4.2f
+double: 4.2
+
+========================================
+CASE: double negative
+INPUT: [-4.2]
+----------------------------------------
+char: impossible
+int: -4
+float: -4.2f
+double: -4.2
+
+========================================
+CASE: double leading dot
+INPUT: [.5]
+----------------------------------------
+char: Non displayable
+int: 0
+float: 0.5f
+double: 0.5
+
+========================================
+CASE: double trailing dot
+INPUT: [42.]
+----------------------------------------
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+
+========================================
+CASE: double signed leading dot
+INPUT: [-.5]
+----------------------------------------
+char: impossible
+int: 0
+float: -0.5f
+double: -0.5
+
+========================================
+CASE: double pseudo nan
+INPUT: [nan]
+----------------------------------------
+char: impossible
+int: impossible
+float: nanf
+double: nan
+
+========================================
+CASE: double pseudo inf
+INPUT: [+inf]
+----------------------------------------
+char: impossible
+int: impossible
+float: +inff
+double: +inf
+
+========================================
+CASE: double pseudo neg inf
+INPUT: [-inf]
+----------------------------------------
+char: impossible
+int: impossible
+float: -inff
+double: -inf
+
+
+########################################
+GROUP: Invalid Inputs
+########################################
+
+========================================
+CASE: letters
+INPUT: [abc]
+----------------------------------------
+Invalid input
+
+========================================
+CASE: double sign plus
+INPUT: [++42]
+----------------------------------------
+Invalid input
+
+========================================
+CASE: double sign minus
+INPUT: [--42]
+----------------------------------------
+Invalid input
+
+========================================
+CASE: mixed suffix
+INPUT: [42ff]
+----------------------------------------
+Invalid input
+
+========================================
+CASE: single dot
+INPUT: [.]
+----------------------------------------
+char: '.'
+int: 46
+float: 46.0f
+double: 46.0
+
+========================================
+CASE: single f
+INPUT: [f]
+----------------------------------------
+char: 'f'
+int: 102
+float: 102.0f
+double: 102.0
+
+========================================
+CASE: dangling sign
+INPUT: [+]
+----------------------------------------
+char: '+'
+int: 43
+float: 43.0f
+double: 43.0
+
+========================================
+CASE: trailing chars
+INPUT: [12.3foo]
+----------------------------------------
+Invalid input
+
+========================================
+CASE: embedded spaces
+INPUT: [4 2]
+----------------------------------------
+Invalid input
+
+========================================
+CASE: multiple dots
+INPUT: [1.2.3]
+----------------------------------------
+Invalid input

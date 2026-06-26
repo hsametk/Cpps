@@ -4,6 +4,14 @@
 #include <algorithm>
 #include <exception>
 #include <iostream>
+
+class NotFoundException : public std::exception {
+public:
+    virtual const char* what() const throw() {
+        return "Value not found!";
+    }
+};
+
 template <typename T>
 typename T::iterator easyfind(T& container, int value)
 {
@@ -12,7 +20,7 @@ typename T::iterator easyfind(T& container, int value)
     it = std::find(container.begin(), container.end(), value);
 
     if (it == container.end())
-        throw std::exception(); // veya kendi exception
+        throw NotFoundException();
 
     return it;
 }

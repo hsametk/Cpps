@@ -7,7 +7,7 @@ void printElement(const T& element)
     std::cout << element << " ";
 }
 
-void increment(int & n) {
+void increment(int &n) {
     n++;
 }
 

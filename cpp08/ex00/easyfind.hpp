@@ -4,6 +4,10 @@
 #include <algorithm>
 #include <exception>
 #include <iostream>
+#include <vector>
+#include <list>
+#include <iostream>
+
 
 class NotFoundException : public std::exception {
 public:

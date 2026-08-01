@@ -11,7 +11,7 @@
 class BitcoinExchange {
 private:
   std::map<std::string, double> _data;
-
+  void loadDatabase(const std::string &filename);
 public:
   BitcoinExchange();
   BitcoinExchange(char *filename);

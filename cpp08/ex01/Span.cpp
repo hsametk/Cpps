@@ -10,10 +10,6 @@ Span::Span(unsigned int n)
 {
 }
 
-Span::~Span()
-{
-}
-
 Span::Span(const Span& other)
     : _n(other._n)
     , _vec(other._vec)
@@ -27,6 +23,10 @@ Span& Span::operator=(const Span& other)
         _vec = other._vec;
     }
     return *this;
+}
+
+Span::~Span()
+{
 }
 
 void Span::addNumber(int n)

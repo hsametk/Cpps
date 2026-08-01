@@ -29,7 +29,7 @@ int main()
     --it;
     while (it != ite)
     {
-        std::cout << *it << std::endl;
+        std::cout << *it   << std::endl;
         ++it;
     }
     std::stack<int> s(mstack);
@@ -50,7 +50,6 @@ int main()
     mlist.push_back(3);
     mlist.push_back(5);
     mlist.push_back(737);
-    //[...]
     mlist.push_back(0);
     
     std::list<int>::iterator lit = mlist.begin();

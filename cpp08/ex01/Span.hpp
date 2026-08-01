@@ -26,9 +26,8 @@ public:
   int shortestSpan();
   int longestSpan();
 
-  // Template member function to add multiple numbers from iterators
   template <typename Iterator> void addNumbers(Iterator begin, Iterator end) {
-    if (std::distance(begin, end) > static_cast<long>(_n - _vec.size())) {
+    if (std::distance(begin, end) + _vec.size() > _n) {
       throw std::overflow_error("Span is full!");
     }
     _vec.insert(_vec.end(), begin, end);

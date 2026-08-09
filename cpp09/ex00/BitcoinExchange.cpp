@@ -18,7 +18,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-// Stringin basindaki ve sonundaki bosluklari temizler
 static std::string trim(const std::string &str) {
   size_t first = str.find_first_not_of(" \t");
   if (first == std::string::npos)
@@ -27,7 +26,6 @@ static std::string trim(const std::string &str) {
   return str.substr(first, (last - first + 1));
 }
 
-// Tarih formatinin YYYY-MM-DD seklinde olup olmadigini kontrol eder
 static bool hasValidDateFormat(const std::string &date) {
   if (date.length() != 10)
     return false;
@@ -42,13 +40,10 @@ static bool hasValidDateFormat(const std::string &date) {
   return true;
 }
 
-// Tarihin gecerli bir takvim tarihi olup olmadigini kontrol eder
 static bool isValidDate(const std::string &date) {
   if (!hasValidDateFormat(date))
     return false;
 
-  // "2011-09-13" → year=2011, dash1='-', month=9, dash2='-', day=13
-  // >> operatoru tipe gore otomatik ayirir (int→sayi, char→tek karakter)
   int year, month, day;
   char dash1, dash2;
   std::stringstream ss(date);
@@ -61,11 +56,9 @@ static bool isValidDate(const std::string &date) {
   if (day < 1 || day > 31)
     return false;
 
-  // 30 gunluk aylar icin 31. gun kontrolu
   if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11))
     return false;
 
-  // Subat icin artik yil kontrolu
   if (month == 2) {
     bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     if (day > 29 || (!isLeap && day > 28))
@@ -74,7 +67,6 @@ static bool isValidDate(const std::string &date) {
   return true;
 }
 
-// String'i double'a cevirir, basarisizsa false doner
 static bool parseDouble(const std::string &str, double &result) {
   if (str.empty())
     return false;
@@ -90,7 +82,6 @@ static bool parseDouble(const std::string &str, double &result) {
 /*                            Member Functions                                */
 /* ========================================================================== */
 
-// CSV dosyasini okuyup _data map'ine yukler
 void BitcoinExchange::loadDatabase(const std::string &filename) {
   std::ifstream file(filename.c_str());
   if (!file.is_open())
@@ -107,18 +98,17 @@ void BitcoinExchange::loadDatabase(const std::string &filename) {
 // stringstream, string'i stream'e cevirerek getline ile parcalama
 // ve >> ile tur donusumu yapmamizi saglar.
 void BitcoinExchange::loadData(const std::string &line) {
-  std::stringstream ss(line); // string'i stream'e cevir (getline kullanabilmek icin)
+  std::stringstream ss(line);
   std::string date;
   std::string value;
   if (std::getline(ss, date, ',') && std::getline(ss, value)) {
     double val;
-    std::stringstream valStream(value); // "5.8" string'ini double'a cevirmek icin stream'e sar
-    valStream >> val;                   // string → double donusumu
-    _data[date] = val;                  // map'e ekle: _data["2011-09-13"] = 5.8
+    std::stringstream valStream(value);
+    valStream >> val;
+    _data[date] = val;
   }
 }
 
-// Input dosyasini satir satir isler ve bitcoin degerlerini hesaplar
 void BitcoinExchange::processFile(char *filename) {
   std::ifstream file(filename);
   if (!file.is_open()) {
@@ -130,7 +120,6 @@ void BitcoinExchange::processFile(char *filename) {
   bool isFirstLine = true;
 
   while (std::getline(file, line)) {
-    // Header satirini atla
     if (isFirstLine) {
       isFirstLine = false;
       if (line == "date | value")
@@ -139,7 +128,6 @@ void BitcoinExchange::processFile(char *filename) {
     if (trim(line).empty())
       continue;
 
-    // Satiri '|' ayracina gore parcala
     size_t delimPos = line.find('|');
     if (delimPos == std::string::npos) {
       std::cerr << "Error: bad input => " << line << std::endl;
@@ -149,13 +137,11 @@ void BitcoinExchange::processFile(char *filename) {
     std::string dateStr = trim(line.substr(0, delimPos));
     std::string valStr  = trim(line.substr(delimPos + 1));
 
-    // Tarih validasyonu
     if (!isValidDate(dateStr)) {
       std::cerr << "Error: bad input => " << dateStr << std::endl;
       continue;
     }
 
-    // Deger validasyonu
     double val;
     if (!parseDouble(valStr, val)) {
       std::cerr << "Error: bad input => " << line << std::endl;
@@ -170,23 +156,21 @@ void BitcoinExchange::processFile(char *filename) {
       continue;
     }
 
-    // Veritabanindan en yakin tarihi bul (lower_bound)
     std::map<std::string, double>::iterator it = _data.lower_bound(dateStr);
     if (it == _data.end()) {
       if (_data.empty()) {
         std::cerr << "Error: database is empty." << std::endl;
         continue;
       }
-      --it; // Son kayda geri don
+      --it;
     } else if (it->first != dateStr) {
       if (it == _data.begin()) {
         std::cerr << "Error: bad input => " << dateStr << std::endl;
         continue;
       }
-      --it; // Bir onceki tarihe geri don
+      --it;
     }
 
-    // Sonucu yazdir: tarih => deger = deger * bitcoin_fiyati
     std::cout << dateStr << " => " << val << " = " << (val * it->second)
               << std::endl;
   }
